@@ -1,9 +1,11 @@
 
 import pygame
 from pygame.locals import *
-from tkinter import *
-from tkinter import messagebox
-from Button import Button
+from Images import load_pic
+
+#VERY IMPORTANT. otherwise will import as module not class
+#Spreading out imports to reduce loadtimes
+
 
 pygame.init()
 
@@ -12,15 +14,7 @@ size = (700,500)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Riigikogu")
 
-#Erinevate piltide sisselaadimine
-def load_pic(a):
-    try:
-        img = pygame.image.load(a)
-    except pygame.error as message:
-        print("Cannot load image: ", a)
-        raise SystemExit(message)
-    return img
-
+#Sprites
 class Girl(pygame.sprite.Sprite):
     #a cute girl
     def __init__(self):
@@ -33,8 +27,10 @@ class Girl(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         
 #nupud
-
-    
+from tkinter import *
+from tkinter import messagebox
+from Button import Button
+#tkinter needs to be imported first
 
 def esimene_nupp():
     messagebox.showinfo("Kaja Kallas:",":)")
