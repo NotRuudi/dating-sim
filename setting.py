@@ -3,7 +3,8 @@ import pygame
 from pygame.locals import *
 from Images import load_pic
 
-#VERY IMPORTANT. otherwise will import as module not class
+#VERY IMPORTANT to import code as from [filename] import [function] 
+# otherwise will import as module not class
 #Spreading out imports to reduce loadtimes
 
 
