@@ -43,23 +43,8 @@ background.blit(bg,(0,0))
 screen.blit(background,(0,0))
 pygame.display.flip()
 
-if pygame.font:
-    font = pygame.font.Font(None,20)
-    text = font.render("Kas sa panid 6la alla?",1,(10,10,10))
-    position = text.get_rect(centerx = background.get_height()/3)
-    screen.blit(text,position)
-
-
-
 
 clock = pygame.time.Clock()
-
-
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
 
 sprites = pygame.sprite.Group()
 girl = Girl()
@@ -69,7 +54,19 @@ sprites.update()
 screen.blit(background,(0,0))
 sprites.draw(screen)
 
+if pygame.font:
+    font = pygame.font.Font(None,35)
+    text = font.render("Kas sa panid 6la alla?",1,(255,255,255))
+    position = text.get_rect(centerx = background.get_height()/3)
+    screen.blit(text,position)
+
 pygame.display.flip()
 
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+
 pygame.quit()
-Githube
