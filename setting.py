@@ -8,13 +8,12 @@ from tkinter import messagebox
 pygame.init()
 
 size = (700,500)
-
+#Hypikakna suurus
 screen = pygame.display.set_mode(size)
-pygame.display.set_caption("game")
+pygame.display.set_caption("Riigikogu")
 
-
+#Erinevate piltide sisselaadimine
 def load_pic(a):
-    #name = os.path.join("data",a)
     try:
         img = pygame.image.load(a)
     except pygame.error as message:
@@ -34,7 +33,7 @@ class Girl(pygame.sprite.Sprite):
         self.image = load_pic("kaja_free.png").convert_alpha()
         self.rect = self.image.get_rect()
         
-
+#nupud
 class Button():
     def __init__(self,text,x=0,y=0,width=100,height=50,command = None):
         self.text = text
@@ -42,10 +41,10 @@ class Button():
 
         self.image_normal = pygame.Surface((width,height))
         self.image_normal.fill((255,182,193))
-
+        #pink
         self.image_hovered = pygame.Surface((width,height))
         self.image_hovered.fill((221,241,251))
-
+        #baby blue
         self.image = self.image_normal
         self.rect = self.image.get_rect()
 
@@ -90,7 +89,7 @@ def teine_nupp():
 
 nupp1 = Button("Jah!",500,50,100,50,esimene_nupp)
 nupp2 = Button("Ei..",500,150,100,50,teine_nupp)
-
+#Arvamused
 
 background = pygame.Surface(screen.get_size())
 background = background.convert()
