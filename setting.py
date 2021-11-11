@@ -2,6 +2,9 @@ import os,sys
 import pygame
 import pygame.freetype
 from pygame.locals import *
+from tkinter import *
+from tkinter import messagebox
+
 pygame.init()
 
 size = (700,500)
@@ -33,7 +36,7 @@ class Girl(pygame.sprite.Sprite):
         
 
 class Button():
-    def __init__(self,text,x=0,y=0,width=100,height=50,command=None):
+    def __init__(self,text,x=0,y=0,width=100,height=50,command = None):
         self.text = text
         self.command = command
 
@@ -76,11 +79,17 @@ class Button():
             if self.hovered:
                 if self.command:
                     self.command()
+    
 
-nupp1 = Button("Jah!",500,50,100,50)
-nupp2 = Button("Ei..",500,150,100,50)
+def esimene_nupp():
+    messagebox.showinfo("Kaja Kallas:",":)")
+
+def teine_nupp():
+    messagebox.showinfo("Kaja Kallas:",":(")
 
 
+nupp1 = Button("Jah!",500,50,100,50,esimene_nupp)
+nupp2 = Button("Ei..",500,150,100,50,teine_nupp)
 
 
 background = pygame.Surface(screen.get_size())
