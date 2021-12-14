@@ -1,7 +1,10 @@
-
+import abc
+import pygame_gui
 import pygame
 from pygame.locals import *
+from pygame_gui.elements import UITextBox, UIButton
 from Images import load_pic
+
 
 #VERY IMPORTANT to import code as from [filename] import [function] 
 # otherwise will import as module not class
@@ -13,7 +16,15 @@ pygame.init()
 size = (700,500)
 #Hypikakna suurus
 screen = pygame.display.set_mode(size)
-pygame.display.set_caption("Riigikogu")
+pygame.display.set_caption("Dialoogi simulaator")
+
+
+KEY_REPEAT_SETTING = (200,70)
+
+#Paarisarvulised indeksid on nupp1 , paaritud nupp 2
+Options1 = [":)","Hea!"]
+Options2 = [":(","Halb"]
+Conversation = ["Kas sa panid 6la alla?","Mida sa  minu valitsusest arvad?"]
 
 #Sprites
 class Girl(pygame.sprite.Sprite):
@@ -27,17 +38,34 @@ class Girl(pygame.sprite.Sprite):
         self.image = load_pic("kaja_free.png").convert_alpha()
         self.rect = self.image.get_rect()
         
+
+
 #nupud
-from tkinter import *
-from tkinter import messagebox
 from Button import Button
-#tkinter needs to be imported first
+
+i = 0
 
 def esimene_nupp():
-    messagebox.showinfo("Kaja Kallas:",":)")
+    global i
+    dialoog = Options1[i]
+    pygame.draw.rect(screen, (0,0,0), (10,400,500,100))
+    font = pygame.font.Font(None,35)
+    tekst = font.render(dialoog,1,(255,255,255))
+    position = (10,400)
+    screen.blit(tekst,position)
+    i += 1
+
 
 def teine_nupp():
-    messagebox.showinfo("Kaja Kallas:",":(")
+    global i
+    dialoog = Options2[i]
+    pygame.draw.rect(screen, (0,0,0), (10,400,500,100))
+    font = pygame.font.Font(None,35)
+    tekst = font.render(dialoog,1,(255,255,255))
+    position = (10,400)
+    screen.blit(tekst,position)
+    i += 1
+
 
 
 nupp1 = Button("Jah!",500,50,100,50,esimene_nupp)
@@ -67,10 +95,13 @@ sprites.update()
 screen.blit(background,(0,0))
 sprites.draw(screen)
 
+pygame.draw.rect(screen, (0,0,0), (10,400,500,100))
+
 if pygame.font:
+    convo = Conversation[i]
     font = pygame.font.Font(None,35)
-    tekst = font.render("Kas sa panid 6la alla?",1,(255,255,255))
-    position = tekst.get_rect(centerx = background.get_height()/3)
+    tekst = font.render(convo,1,(255,255,255))
+    position = (10,400)
     screen.blit(tekst,position)
 
 pygame.display.flip()
@@ -87,6 +118,7 @@ while running:
     nupp1.update()
     nupp2.update()
 
+    pygame.display.update()
 
     nupp1.draw(screen)
     nupp2.draw(screen)
